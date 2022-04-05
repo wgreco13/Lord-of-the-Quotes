@@ -1,0 +1,45 @@
+{
+  "name": "lord-of-the-quotes",
+  "version": "1.0.0",
+  "description": "The premier Lord of the Rings quote trivia application.",
+  "main": "index.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=production node server/server.js",
+    "build": "webpack",
+    "dev": "NODE_ENV=development webpack serve --open & nodemon server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wgreco13/solo-project.git"
+  },
+  "author": "Bill Greco",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wgreco13/solo-project/issues"
+  },
+  "homepage": "https://github.com/wgreco13/solo-project#readme",
+  "dependencies": {
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "node-fetch": "^3.2.3",
+    "nodemon": "^2.0.15",
+    "postgres": "^3.0.4",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.8",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-react": "^7.16.7",
+    "babel-loader": "^8.2.4",
+    "css-loader": "^6.7.1",
+    "html-webpack-plugin": "^5.5.0",
+    "sass": "^1.49.11",
+    "sass-loader": "^12.6.0",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.71.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.8.0"
+  }
+}

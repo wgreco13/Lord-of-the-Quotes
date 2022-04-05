@@ -1,12 +1,14 @@
 // const path = require('path')
+
+const path = require('path');
+
 // const process = require('process')
-// const dotenv = require('dotenv').config( {
-//     path: path.join(__dirname, '../.env')
-// });
+require('dotenv').config({
+    path: path.join(__dirname, '../.env')
+});
 const fetch = import('node-fetch');
 
-API_KEY = 'tBIQgohTFehcxJcSNclb';
-// console.log(process.env);
+API_KEY = process.env.API_KEY;
 
 retrieveQuote = async (characterId) => {
     const headers = {
@@ -33,5 +35,5 @@ retrieveCharacter = async () => {
 }
 
 // Takes as optional input character id
-retrieveCharacter();
+// retrieveCharacter();
 // Add inputs
