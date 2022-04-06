@@ -15,10 +15,10 @@ const apiController = {};
   * It takes as input an array of characters and returns an array of characterIDs.
   * Storing characterIDArray so the database does not need to be queried every time
 */
-const characters = ['Aragorn II Elessar', 'Arwen', 'Bilbo Baggins', 'Elrond', 'Éomer', 'Faramir', 'Frodo Baggins', 'Galadriel', 
-  'Gandalf','Gimli', 'Gríma Wormtongue', 'Legolas', 'Meriadoc Brandybuck', 'Peregrin Took', 'Samwise Gamgee',
+const characters = ['Aragorn II Elessar', 'Arwen', 'Bilbo Baggins', 'Boromir', 'Elrond', 'Éomer', 'Faramir', 'Frodo Baggins', 'Galadriel', 
+  'Gandalf','Gimli', 'Gollum', 'Gríma Wormtongue', 'Legolas', 'Meriadoc Brandybuck', 'Peregrin Took', 'Samwise Gamgee',
   'Saruman', 'Théoden', 'Treebeard', 'Witch-king of Angmar'];
-// Add GOLLUM
+
 const getCharacterID = async (characterArray) => {
   
   const headers = {
@@ -43,22 +43,41 @@ const getCharacterID = async (characterArray) => {
 // getCharacterID(characters);
 
 apiController.retrieveRandomQuotes = async (req, res, next) => {
-  const headers = {
-      Authorization: `Bearer ${API_KEY}`
-  }
-  const randomCharIndex = Math.floor(Math.random() * characters.length);
-  const randomCharacter = characters[randomCharIndex];
-  // Import database and grab character id
-  
-  const response = await fetch('https://the-one-api.dev/v2/character/', {
-      headers: headers,
-      method: 'GET'
-  });
-  const character = await response.json();
-  
-  // Get random character quote from array.
+  try {
+    const headers = {
+        Authorization: `Bearer ${API_KEY}`
+    }
+    const randomCharIndex = Math.floor(Math.random() * characters.length);
+    const randomCharacterName = characters[randomCharIndex];
+    const queryString = 'SELECT _id FROM characters WHERE name = $1'
+    let randomCharacterID = await db.query(queryString, [randomCharacterName]);
+    randomCharacterID = randomCharacterID.rows[0]._id;
+      
+    const response = await fetch(`https://the-one-api.dev/v2/character/${randomCharacterID}/quote`, {
+        headers: headers,
+        method: 'GET'
+    });
+    const quotesData = await response.json();
+    const quote = quotesData.docs[Math.floor(Math.random() * quotesData.docs.length)].dialog;
+    res.locals.quote = {
+      name: randomCharacterName,
+      id: randomCharacterID,
+      quote: quote
+    }
 
-  return next();
+    return next();
+  }
+  catch (err) {
+    const error = {
+      log: 'Express error handler caught an error in the retrieveRandomQuotes middleware.',
+      status: 400,
+      message: { err }
+    };
+    return next(error);
+  }
 }
 
-module.exports = apiController;
+module.exports = {
+  apiController: apiController,
+  characters: characters
+};
