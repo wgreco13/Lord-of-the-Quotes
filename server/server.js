@@ -1,39 +1,26 @@
-// const path = require('path')
+const express = require('express');
+const app = express();
+const PORT = 3000;
 
-const path = require('path');
+const apiController = require('./controllers/apiController')
 
-// const process = require('process')
-require('dotenv').config({
-    path: path.join(__dirname, '../.env')
+app.get('/', apiController.getCharacterID, (req, res) => {
+    return res.status(200).send();
+})
+
+app.use((err, req, res, next) => {
+    const defaultErr = {
+        log: 'Express error handler caught unknown middleware error.',
+        status: 400,
+        message: { err: 'An error has occurred' }
+    };
+    const errorObj = Object.assign({}, defaultErr, err);
+    console.log(errorObj.log);
+    return res.status(400).json(errorObj.message);
+})
+
+app.listen(PORT, () => {
+    console.log(`Server listening on port: ${PORT}`);
 });
-const fetch = import('node-fetch');
 
-API_KEY = process.env.API_KEY;
-
-retrieveQuote = async (characterId) => {
-    const headers = {
-        Authorization: `Bearer ${API_KEY}`
-    }
-    const response = await fetch('https://the-one-api.dev/v2/quote', {
-        headers: headers,
-        method: 'GET'
-    });
-    const quotes = await response.json();
-    console.log(quotes);
-}
-
-retrieveCharacter = async () => {
-    const headers = {
-        Authorization: `Bearer ${API_KEY}`
-    }
-    const response = await fetch('https://the-one-api.dev/v2/character', {
-        headers: headers,
-        method: 'GET'
-    });
-    const character = await response.json();
-    console.log(character);
-}
-
-// Takes as optional input character id
-// retrieveCharacter();
-// Add inputs
+module.exports = app;
