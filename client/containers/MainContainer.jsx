@@ -70,7 +70,7 @@ const MainContainer = props => {
                     <button className="secondary-button" onClick={deleteHistory}>
                         Delete History
                     </button>
-                    <span>Cast it into the fire! Destroy it!</span>
+                    <small>Cast it into the fire! Destroy it!</small>
                 </section>
             </main>
         );
@@ -91,6 +91,7 @@ const MainContainer = props => {
                     <button className="secondary-button" onClick={deleteHistory}>
                         Delete History
                     </button>
+                    <small>Cast it into the fire! Destroy it!</small>
                 </section>
             </main>
         )
