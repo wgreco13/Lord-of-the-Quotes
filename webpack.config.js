@@ -7,6 +7,7 @@ module.exports = {
   entry: './client/index.js',
   output: {
     path: path.resolve(__dirname, 'build'),
+    // publicPath: '/',
     filename: 'bundle.js',
   },
   mode: process.env.NODE_ENV,
@@ -41,8 +42,9 @@ module.exports = {
       publicPath: '/'
     },
     proxy: {
-      // TODO:
-      '/api': 'http://localhost: 3000',
+      '/newquote': 'http://localhost:3000',
+      '/history': 'http://localhost:3000',
+      '/submit': 'http://localhost:3000'
     }
   }
 }

@@ -61,9 +61,42 @@ table {
           box-sizing: border-box;
 }
 
+html {
+    font-size: 0.625em;
+}
+
+@font-face {
+    font-family: 'lotr';
+    src: url('../assets/RingbearerMedium-51mgZ.ttf');
+}
 
 /*
   ========================================
   Header Styles
   ========================================
 */
+
+header h1 {
+    font-family: 'lotr';
+    font-size: 5rem;
+    color: #151515;
+}
+
+
+/*
+  ========================================
+  Body Styles
+  ========================================
+*/
+
+.character-button {
+    display: inline-block;
+    padding: 2rem;
+    border: 1px solid black;
+    border-radius: 4px;
+}
+
+.character-button-container {
+    display: flex;
+    flex-wrap: wrap;
+}

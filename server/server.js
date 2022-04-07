@@ -46,16 +46,15 @@ app.get('/newquote',
         return res.status(200).json(res.locals.quote);
 });
 
-app.get('/', 
-    apiController.retrieveRandomQuotes, 
+app.get('/',  
     (req, res) => {
-        return res.status(200).json(res.locals.quote);
+        return res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
 });
 
 app.use('*', 
     (req, res) => {
         return res.status(404).send();
-})
+});
 
 
 app.use((err, req, res, next) => {
