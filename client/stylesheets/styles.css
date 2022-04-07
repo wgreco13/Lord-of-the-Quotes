@@ -63,11 +63,16 @@ table {
 
 html {
     font-size: 0.625em;
+    font-family: Helvetica, Arial, sans-serif;
 }
 
 @font-face {
     font-family: 'lotr';
     src: url('../assets/RingbearerMedium-51mgZ.ttf');
+}
+
+body {
+  background: #111111;
 }
 
 /*
@@ -76,10 +81,17 @@ html {
   ========================================
 */
 
+header {
+  display: flex;
+  justify-content: center;
+}
+
 header h1 {
-    font-family: 'lotr';
-    font-size: 5rem;
-    color: #151515;
+    font-family: 'lotr', Arial, Helvetica, sans-serif;
+    font-size: 7rem;
+    color: #f5f5f5;
+    padding: 2rem 1rem;
+    text-align: center;
 }
 
 
@@ -89,14 +101,94 @@ header h1 {
   ========================================
 */
 
-.character-button {
-    display: inline-block;
-    padding: 2rem;
-    border: 1px solid black;
-    border-radius: 4px;
+.main-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 15rem;
+  padding: 1.5rem;
+  gap: 2rem;
 }
 
+.main-text p,
+.guess-result {
+  text-align: center;
+  color: #dcdcdc;
+  font-size: 2.25rem;
+  font-style: italic;
+}
+
+
+
 .character-button-container {
-    display: flex;
-    flex-wrap: wrap;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.character-button {
+  background: inherit;
+  display: inline-block;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 1em;
+  font-weight: 500;
+  padding: 1rem;
+  border: 1px solid black;
+  border-radius: 4px;
+  flex: 1 0 15%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 170px;
+  height: 170px;
+}
+
+.character-button-text,
+.character-button-pct {
+    font-size: 1.25rem;
+    color: #cfcfcf;
+    font-weight: 600;
+}
+
+.character-button-pct {
+  color: #a2a2a2
+}
+
+.primary-button {
+  background: #3A2D49;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #C9C5CD;
+  padding: 1rem;
+  border: 1px solid #C9C5CD;
+  border-radius: 4px;
+}
+
+.primary-button:hover {
+  background: #413550;
+  transition: background 0.2s linear;
+}
+
+.primary-button:active {
+  background-color: #51455E;
+  box-shadow: 0px 0px 5px #9EA6CC;
+}
+
+.portrait,
+.portrait-no-select {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  box-shadow: 0px 0px 10px rgb(221, 118, 232);
+}
+
+.character-button:hover .portrait {
+  box-shadow: 0px 0px 20px rgb(221, 118, 232);
+  transition: box-shadow 0.5s ease-out;
+}
+
+.character-button:focus .portrait {
+  box-shadow: 0px 0px 20px rgb(169, 57, 181);
 }
