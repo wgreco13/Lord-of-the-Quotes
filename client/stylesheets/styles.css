@@ -119,12 +119,26 @@ header h1 {
   font-style: italic;
 }
 
+.bottom-selectors {
+  padding: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  background: #202124;
+  font-size: 1.5rem;
+  font-style: italic;
+  font-weight: 500;
+  color: #C9C5CD;
+}
 
 
 .character-button-container {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  
 }
 
 .character-button {
@@ -161,16 +175,36 @@ header h1 {
   font-weight: 700;
   color: #C9C5CD;
   padding: 1rem;
-  border: 1px solid #C9C5CD;
+  border: 2px solid #C9C5CD;
   border-radius: 4px;
 }
 
 .primary-button:hover {
   background: #413550;
-  transition: background 0.2s linear;
+  transition: background-color 0.2s linear;
 }
 
 .primary-button:active {
+  background-color: #51455E;
+  box-shadow: 0px 0px 5px #9EA6CC;
+}
+
+.secondary-button {
+  background: inherit;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #C9C5CD;
+  padding: 1rem;
+  border: 2px solid #3A2D49;
+  border-radius: 4px;
+}
+
+.secondary-button:hover {
+  background: #413550;
+  transition: background-color 0.2s linear;
+}
+
+.secondary-button:active {
   background-color: #51455E;
   box-shadow: 0px 0px 5px #9EA6CC;
 }

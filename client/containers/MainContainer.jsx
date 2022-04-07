@@ -25,7 +25,6 @@ const MainContainer = props => {
     }
 
     const getHistory = () => {
-        console.log('retrieving history');
         fetch('/history')
             .then(data => data.json())
             .then(historyObj => {
@@ -36,6 +35,19 @@ const MainContainer = props => {
             });
     }
     
+    const deleteHistory = () => {
+        fetch('/history', {
+            method: 'DELETE'
+            })
+            .then(data => data.json())
+            .then(() => {
+                getHistory()
+            })
+            .catch(err => {
+                console.log(`Error fetching deleting user history! Error: ${err}`);
+            });
+    }
+
     const characterButtons = characters.map((char, index) => {
         return <CharacterButton key={char} index={index} name={ char } quoteData={quoteData} setQuote={setQuote} historyData={historyData} setHistory={setHistory} lastGuess={lastGuess} setLastGuess={setLastGuess} />
     });
@@ -54,6 +66,12 @@ const MainContainer = props => {
                 <section className="character-button-container">
                     { characterButtons }
                 </section>
+                <section className="bottom-selectors">
+                    <button className="secondary-button" onClick={deleteHistory}>
+                        Delete History
+                    </button>
+                    <span>Cast it into the fire! Destroy it!</span>
+                </section>
             </main>
         );
     }
@@ -68,6 +86,11 @@ const MainContainer = props => {
                 </section>
                 <section className="character-button-container">
                     { characterButtons }
+                </section>
+                <section className="bottom-selectors">
+                    <button className="secondary-button" onClick={deleteHistory}>
+                        Delete History
+                    </button>
                 </section>
             </main>
         )
