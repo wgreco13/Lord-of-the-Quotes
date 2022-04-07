@@ -64,7 +64,7 @@ const CharacterButton = props => {
 }
 
 function percentCorrect (props) {
-    if (!props.historyData[props.name].score.correct || !props.historyData[props.name].score.incorrect) return 0.00;
+    if (!props.historyData[props.name].score.correct && !props.historyData[props.name].score.incorrect) return 0.00;
     else return Math.floor(props.historyData[props.name].score.correct / (props.historyData[props.name].score.correct + props.historyData[props.name].score.incorrect) * 100)
 }
 
