@@ -1,4 +1,8 @@
-<h1 align="center">Lord of the Quotes</h1>
+<h1 align='center'>Lord of the Quotes</h1>
+
+<div align='center'>
+<img src='Design/Lord of the Quotes.png'>
+</div>
 
 ## About
 
